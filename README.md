@@ -83,7 +83,8 @@ Lending-Club-Data-Engineering/
 ### Before Processing
 High-cardinality categorical features dominate the dataset.
 
-![Categorical Features Before Processing](images/categorical_features_before.png)
+![Categorical Features Before Processing](<img width="1990" height="1497" alt="categorical_features_before" src="https://github.com/user-attachments/assets/ba04e25e-d4a9-49aa-b4d6-b215d16a3461" />
+)
 
 ### After Processing
 Rare labels grouped and high-cardinality text fields replaced by clusters.
