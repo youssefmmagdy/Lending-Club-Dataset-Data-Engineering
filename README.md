@@ -82,7 +82,7 @@ Lending-Club-Data-Engineering/
 ### Before Processing
 High-cardinality categorical features dominate the dataset.
 
-<img width="1490" height="345" alt="predicted_actual" src="https://github.com/user-attachments/assets/61498feb-1ba2-4927-b383-55e56737e0e5" />
+<img width="1990" height="1497" alt="categorical_features_before" src="https://github.com/user-attachments/assets/91d17168-6145-46c3-99b1-f0002e406855" />
 
 ---
 
