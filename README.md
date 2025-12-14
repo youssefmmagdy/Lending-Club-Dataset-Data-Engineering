@@ -82,14 +82,15 @@ Lending-Club-Data-Engineering/
 ### Before Processing
 High-cardinality categorical features dominate the dataset.
 
-<img src="images/categorical_features_before.png" alt="Categorical Features Before Processing" width="100%"/>
+<img width="1990" height="1497" alt="categorical_features_before" src="https://github.com/user-attachments/assets/f257ab4c-7f73-41b3-8408-aa2e1f17fdd9" />
 
 ---
 
 ### After Processing
 Rare labels grouped and high-cardinality text fields replaced by semantic clusters.
 
-<img src="images/categorical_features.png" alt="Categorical Features After Processing" width="100%"/>
+<img width="1990" height="1497" alt="categorical_features" src="https://github.com/user-attachments/assets/586c2d8d-2e4f-4ead-b8f3-8e023857c407" />
+
 
 ---
 
@@ -98,14 +99,16 @@ Rare labels grouped and high-cardinality text fields replaced by semantic cluste
 ### Dates Converted to Datetime
 Raw date parsing and validation.
 
-<img src="images/dates_converted_to_datetimes.png" alt="Dates Converted to Datetimes" width="100%"/>
+<img width="1789" height="985" alt="Dates converted to datetimes" src="https://github.com/user-attachments/assets/6229ac72-8b99-4d2f-b8f4-eb799a7c4961" />
+
 
 ---
 
 ### Dates Converted to Days
 Dates transformed into numeric offsets for model compatibility.
 
-<img src="images/dates_converted_to_days.png" alt="Dates Converted to Days" width="100%"/>
+<img width="1789" height="985" alt="Dates converted to days" src="https://github.com/user-attachments/assets/de491844-9466-435b-9f00-84a1fe07dfb8" />
+
 
 ---
 
@@ -118,13 +121,15 @@ Two high-cardinality text columns were embedded using **Sentence-BERT (SBERT)**:
 
 ### Job Title Clustering
 
-<img src="images/embedded_clusters.png" alt="Job Title Embedding Clusters" width="100%"/>
+<img width="1590" height="590" alt="embedded_clusters" src="https://github.com/user-attachments/assets/27ff8aab-7ebe-4812-9496-4940b37a18d6" />
+
 
 ---
 
 ### Loan Purpose Clustering
 
-<img src="images/loan_title_clusters.png" alt="Loan Purpose Clusters" width="100%"/>
+<img width="1590" height="590" alt="loan_title_clusters" src="https://github.com/user-attachments/assets/afb6d075-e960-42d7-a4b0-635a7b846eb5" />
+
 
 ### Benefits
 - Reduced 10,000+ unique values → **15 semantic clusters**
@@ -140,7 +145,8 @@ Two high-cardinality text columns were embedded using **Sentence-BERT (SBERT)**:
 Correlation matrix highlights strong relationships between numerical features
 (e.g., loan amount vs. installment, FICO vs. interest rate).
 
-<img src="images/correlation_matrix.png" alt="Correlation Matrix" width="100%"/>
+<img width="1236" height="1147" alt="correlation_matrix" src="https://github.com/user-attachments/assets/4ef07cdd-d482-4293-b027-7bfb794e2d04" />
+
 
 ---
 
@@ -209,11 +215,6 @@ Correlation matrix highlights strong relationships between numerical features
 - Fairness & bias auditing
 - Cost-sensitive threshold optimization
 
----
-
-## 📜 License
-
-This project is intended for **educational and research purposes**.
 
 ---
 
