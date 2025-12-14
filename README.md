@@ -37,33 +37,32 @@ Binary classification:
 Lending-Club-Data-Engineering/
 │
 ├── data/
-│ ├── raw/
-│ └── processed/
+│   ├── raw/                 # Original LendingClub CSV files
+│   └── processed/           # Cleaned & feature-engineered datasets
 │
 ├── notebooks/
-│ ├── 01_data_exploration.ipynb
-│ ├── 02_preprocessing.ipynb
-│ ├── 03_feature_engineering.ipynb
-│ ├── 04_model_training.ipynb
+│   ├── 01_data_exploration.ipynb
+│   ├── 02_preprocessing.ipynb
+│   ├── 03_feature_engineering.ipynb
+│   └── 04_model_training.ipynb
 │
 ├── src/
-│ ├── preprocessing.py
-│ ├── feature_engineering.py
-│ ├── embeddings.py
-│ └── models.py
+│   ├── preprocessing.py     # Cleaning & leakage prevention
+│   ├── feature_engineering.py
+│   ├── embeddings.py        # SBERT embeddings & clustering
+│   └── models.py            # Model training & evaluation
 │
 ├── images/
-│ ├── categorical_features_before.png
-│ ├── categorical_features.png
-│ ├── correlation_matrix.png
-│ ├── dates_converted_to_datetimes.png
-│ ├── dates_converted_to_days.png
-│ ├── embedded_clusters.png
-│ └── loan_title_clusters.png
+│   ├── categorical_features_before.png
+│   ├── categorical_features.png
+│   ├── dates_converted_to_datetimes.png
+│   ├── dates_converted_to_days.png
+│   ├── embedded_clusters.png
+│   ├── loan_title_clusters.png
+│   └── correlation_matrix.png
 │
 ├── requirements.txt
 └── README.md
-
 
 ---
 
@@ -71,8 +70,8 @@ Lending-Club-Data-Engineering/
 
 ### Key Steps
 - Removed **data leakage features** (post-loan payment information)
-- Preserved high-missing columns using **missing value indicators**
-- Converted **all date columns** to numerical representations (days since minimum date)
+- Preserved high-missing columns using **missing-value indicator flags**
+- Converted **all date columns** to numeric representations (days since minimum date)
 - Grouped rare categorical labels
 - Built a **ColumnTransformer-based preprocessing pipeline**
 
@@ -83,13 +82,14 @@ Lending-Club-Data-Engineering/
 ### Before Processing
 High-cardinality categorical features dominate the dataset.
 
-![Categorical Features Before Processing](<img width="1990" height="1497" alt="categorical_features_before" src="https://github.com/user-attachments/assets/ba04e25e-d4a9-49aa-b4d6-b215d16a3461" />
-)
+<img src="images/categorical_features_before.png" alt="Categorical Features Before Processing" width="100%"/>
+
+---
 
 ### After Processing
-Rare labels grouped and high-cardinality text fields replaced by clusters.
+Rare labels grouped and high-cardinality text fields replaced by semantic clusters.
 
-![Categorical Features After Processing](images/categorical_features.png)
+<img src="images/categorical_features.png" alt="Categorical Features After Processing" width="100%"/>
 
 ---
 
@@ -98,42 +98,49 @@ Rare labels grouped and high-cardinality text fields replaced by clusters.
 ### Dates Converted to Datetime
 Raw date parsing and validation.
 
-![Dates Converted to Datetimes](images/dates_converted_to_datetimes.png)
+<img src="images/dates_converted_to_datetimes.png" alt="Dates Converted to Datetimes" width="100%"/>
+
+---
 
 ### Dates Converted to Days
-All temporal features transformed into numeric day offsets.
+Dates transformed into numeric offsets for model compatibility.
 
-![Dates Converted to Days](images/dates_converted_to_days.png)
+<img src="images/dates_converted_to_days.png" alt="Dates Converted to Days" width="100%"/>
 
 ---
 
 ## 🧠 Text Processing with SBERT
 
-Two high-cardinality text columns were embedded using **Sentence-BERT**:
+Two high-cardinality text columns were embedded using **Sentence-BERT (SBERT)**:
 
-- `emp_title` → Job Title Clusters
-- `title` → Loan Purpose Clusters
+- `emp_title` → Job Title Clusters  
+- `title` → Loan Purpose Clusters  
 
-### Job Title Embedding Clusters
-![Embedded Clusters](images/embedded_clusters.png)
+### Job Title Clustering
 
-### Loan Purpose Clusters
-![Loan Title Clusters](images/loan_title_clusters.png)
+<img src="images/embedded_clusters.png" alt="Job Title Embedding Clusters" width="100%"/>
 
-**Benefits:**
-- Reduced 10,000+ unique values to 15 semantic clusters
+---
+
+### Loan Purpose Clustering
+
+<img src="images/loan_title_clusters.png" alt="Loan Purpose Clusters" width="100%"/>
+
+### Benefits
+- Reduced 10,000+ unique values → **15 semantic clusters**
 - Preserved semantic meaning
 - Robust to typos and unseen values
+- Significant dimensionality reduction
 
 ---
 
 ## 📈 Exploratory Data Analysis (EDA)
 
 ### Correlation Analysis
-Correlation matrix of numerical features reveals strong relationships
+Correlation matrix highlights strong relationships between numerical features
 (e.g., loan amount vs. installment, FICO vs. interest rate).
 
-![Correlation Matrix](images/correlation_matrix.png)
+<img src="images/correlation_matrix.png" alt="Correlation Matrix" width="100%"/>
 
 ---
 
@@ -143,11 +150,12 @@ Correlation matrix of numerical features reveals strong relationships
 - **Ratio & Interaction Features** (e.g., loan-to-income ratio)
 - **Log Transformations**
 - **Box-Cox Transformations**
-- **Decision Tree-Based Discretization**
+- **Decision Tree–Based Discretization**
 
-Feature count progression:
-| Stage | Features |
-|-----|----------|
+### Feature Count Progression
+
+| Stage | Feature Count |
+|-----|---------------|
 | Raw Data | 145 |
 | After Feature Engineering | 162 |
 | After Encoding | 356 |
@@ -156,19 +164,20 @@ Feature count progression:
 
 ## 🤖 Model Training & Evaluation
 
-### Models Used
+### Models Implemented
 - **Decision Tree Classifier**
 - **Logistic Regression**
 
-### Performance
+### Performance Summary
+
 | Model | Test Accuracy |
-|------|--------------|
+|-----|---------------|
 | Decision Tree | **89.73%** |
 | Logistic Regression | 88.45% |
 
-**Decision Tree chosen for production readiness due to:**
+✅ **Decision Tree selected for production** due to:
 - Higher accuracy
-- Non-linear modeling capability
+- Strong non-linear modeling
 - Interpretability
 - Fast inference
 
@@ -178,8 +187,8 @@ Feature count progression:
 
 ✔ Reproducible preprocessing pipeline  
 ✔ Feature engineering fully documented  
-✔ Scalable to millions of records  
-✔ Inference latency < 5ms per loan  
+✔ Scales to millions of records  
+✔ Inference latency < **5 ms per loan**  
 
 ---
 
@@ -188,7 +197,7 @@ Feature count progression:
 - Feature engineering significantly improves predictive power
 - SBERT embeddings effectively handle high-cardinality text
 - Tree-based models outperform linear baselines for credit risk
-- The pipeline is suitable for **real-world production deployment**
+- Pipeline is suitable for **real-world production deployment**
 
 ---
 
@@ -197,17 +206,17 @@ Feature count progression:
 - Ensemble models (Random Forest, XGBoost)
 - SHAP-based explainability
 - Temporal cross-validation
-- Fairness and bias auditing
+- Fairness & bias auditing
 - Cost-sensitive threshold optimization
 
 ---
 
 ## 📜 License
 
-This project is for **educational and research purposes**.
+This project is intended for **educational and research purposes**.
 
 ---
 
 ## ✉️ Contact
 
-If you have questions or suggestions, feel free to reach out or open an issue.
+Questions, feedback, or contributions are welcome — feel free to open an issue or pull request.
